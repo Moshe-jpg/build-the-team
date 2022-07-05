@@ -90,7 +90,7 @@ const promptUser = () => {
     .then((answers) => {
       console.log(answers);
       const indexHtmlPath = path.join(__dirname, '/dist', 'index.html');
-        fs.writeFile(indexHtmlPath, generateHtml(answers), (err) => {
+        fs.writeFile(indexHtmlPath, JSON.stringify(generateHtml(answers)), (err) => {
             if (err){
                 console.log(err);
             }

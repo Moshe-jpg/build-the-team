@@ -8,10 +8,10 @@ const promptUser = () => {
     .prompt([
       {
         type: "input",
-        name: "name",
+        name: "managerName",
         message: "What is the team managers name?",
-        validate: (nameInput) => {
-          if (nameInput) {
+        validate: (managerNameInput) => {
+          if (managerNameInput) {
             return true;
           } else {
             console.log("Please enter the team managers name!");

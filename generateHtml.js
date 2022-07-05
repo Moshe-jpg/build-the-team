@@ -1,6 +1,7 @@
 
 function generateHtml(answers) {
-    return `<!DOCTYPE html>
+    return `
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,7 +15,7 @@ function generateHtml(answers) {
     <div>${answers.managerEmail}</div>
 </body>
 </html>
-`
+`;
 }
 
 

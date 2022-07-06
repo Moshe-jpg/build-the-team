@@ -1,37 +1,33 @@
-const generateOption = (answers) => {
-    if (answers.choices === "engineer"){
-        return `
-        <div class="col-6">
-            <div class="card d-flex align-items-center">
-                <div class="card-body">
-                <h4 class="card-title">Engineer - ${answers.engineerName}</h4>
-                <p class="card-text">Engineer ID - ${answers.engineerId}</p>
-                <a href="mailto:${answers.engineerEmail}" class="card-link">${answers.engineerName}'s Email</a>
-                <a href="github.com/${answers.engineerGithub}" class="card-link">${answers.engineerName}'s Github</a>
-            </div>
+const generateEngineer = (results) => {
+    return `
+    <div class="col-6">
+        <div class="card d-flex align-items-center">
+            <div class="card-body">
+            <h4 class="card-title">Engineer - ${results.engineerName}</h4>
+            <p class="card-text">Engineer ID - ${results.engineerId}</p>
+            <a href="mailto:${results.engineerEmail}" class="card-link">${results.engineerName}'s Email</a>
+            <a href="github.com/${results.engineerGithub}" class="card-link">${results.engineerName}'s Github</a>
         </div>
-        `;
-    }
-    if (answers.choices === "intern"){
-        return `
-        <div class="col-6">
-            <div class="card d-flex align-items-center">
-                <div class="card-body">
-                <h4 class="card-title">Intern - ${answers.internName}</h4>
-                <p class="card-text">Intern ID - ${answers.internId}</p>
-                <p class="card-text">Interns School - ${answers.internSchool}</p>
-                <a href="mailto:${answers.internEmail}" class="card-link">${answers.internName}'s Email</a>
-            </div>
+    </div>
+    `;
+}
+
+const generateIntern = (results) => {
+    return `
+    <div class="col-6">
+        <div class="card d-flex align-items-center">
+            <div class="card-body">
+            <h4 class="card-title">Intern - ${results.internName}</h4>
+            <p class="card-text">Intern ID - ${results.internId}</p>
+            <p class="card-text">Interns School - ${results.internSchool}</p>
+            <a href="mailto:${results.internEmail}" class="card-link">${results.internName}'s Email</a>
         </div>
-        `
-    }
-    else {
-        return ''
-    };
+    </div>
+    `
 }
 
 
-function generateHtml(answers) {
+function generateHtml(answers, results) {
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +37,6 @@ function generateHtml(answers) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="dist\\images\\united.png">
     <title>Build The Team</title>
 </head>
 <body>
@@ -63,7 +58,8 @@ function generateHtml(answers) {
                 <a href="mailto:${answers.managerEmail}" class="card-link">${answers.managerName}'s Email</a>
             </div>
         </div>
-        ${generateOption(answers)}
+        ${generateEngineer(results)}
+        ${generateIntern(results)}
     </div>
 </div>
 

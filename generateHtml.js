@@ -1,7 +1,7 @@
 const generateEngineer = (answers) => {
     return `
-        <div class="col-6">
-            <div class="card d-flex align-items-center">
+        <div class="col-6 p-2">
+            <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Engineer - ${answers.engineerName}</h4>
                     <p class="card-text">Engineer ID - ${answers.engineerId}</p>
@@ -15,8 +15,8 @@ const generateEngineer = (answers) => {
 
 const generateIntern = (answers) => {
         return `
-        <div class="col-6">
-            <div class="card d-flex align-items-center">
+        <div class="col-6 p-2">
+            <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Intern - ${answers.internName}</h4>
                     <p class="card-text">Intern ID - ${answers.internId}</p>
@@ -42,7 +42,7 @@ function generateHtml(answers) {
     <title>Build The Team</title>
 </head>
 <body>
-<div class="jumbotron jumbotron-fluid text-center">
+<div class="jumbotron jumbotron-fluid text-center sticky-top">
     <div class="container">
         <h1 class="display-3">Build The Team</h1>
         <p class="lead">This Is The Team You Built In The Console</p>
@@ -50,9 +50,9 @@ function generateHtml(answers) {
 </div>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-6">
-            <div class="card d-flex align-items-center">
+    <div class="row pt-2">
+        <div class="col-6 p-2">
+            <div class="card card-engineer">
                 <div class="card-body">
                     <h4 class="card-title">Team Manager - ${answers.managerName}</h4>
                     <p class="card-text">Manager ID - ${answers.managerId}</p>

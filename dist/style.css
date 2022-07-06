@@ -3,6 +3,33 @@
     box-sizing: border-box;
 }
 
+body {
+    height: 100%;
+    background: linear-gradient(#C9C8F7, #ABB5D4, #CADAEB, #ABCAD4, #B3F6F5);
+}
+
+.jumbotron {
+    background: #ffffff;
+    opacity: 80%;
+}
+
+.row {
+    margin: 2%;
+}
+
+.card {
+    text-align: center;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    text-transform: capitalize;
+    height: 28vh;
+    box-shadow: 5px 5px 11px black;
+}
+
+.card-engineer {
+    background: #DDDDDD;
+}
+
 a {
     text-decoration: none;
     color: red;

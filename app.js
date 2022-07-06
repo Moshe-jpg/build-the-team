@@ -77,12 +77,12 @@ const promptUser = () => {
     ])
     .then((answers) => {
       nextOptions(answers);
-      return answers, results;
+      return answers;
     })
-    .then((answers, results) => {
-      console.log(answers, results);
+    .then((answers) => {
+      console.log(answers);
       const indexHtmlPath = path.join(__dirname, "/dist", "index.html");
-      fs.writeFileSync(indexHtmlPath, generateOption(answers, results), generateHtml(answers),  "utf-8", (err) => {
+      fs.writeFileSync(indexHtmlPath, generateHtml(answers),  "utf-8", (err) => {
           if (err) {
             console.log(err);
           }
@@ -215,9 +215,8 @@ const nextOptions = (answers) => {
   else {
     
   }
-  return results;
 }
 
 
 
-promptUser();
+promptUser()

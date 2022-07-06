@@ -1,33 +1,35 @@
-const generateEngineer = (results) => {
+const generateEngineer = (answers) => {
     return `
-    <div class="col-6">
-        <div class="card d-flex align-items-center">
-            <div class="card-body">
-            <h4 class="card-title">Engineer - ${results.engineerName}</h4>
-            <p class="card-text">Engineer ID - ${results.engineerId}</p>
-            <a href="mailto:${results.engineerEmail}" class="card-link">${results.engineerName}'s Email</a>
-            <a href="github.com/${results.engineerGithub}" class="card-link">${results.engineerName}'s Github</a>
+        <div class="col-6">
+            <div class="card d-flex align-items-center">
+                <div class="card-body">
+                    <h4 class="card-title">Engineer - ${answers.engineerName}</h4>
+                    <p class="card-text">Engineer ID - ${answers.engineerId}</p>
+                    <a href="mailto:${answers.engineerEmail}" class="card-link">${answers.engineerName}'s Email</a>
+                    <a href="github.com/${answers.engineerGithub}" class="card-link">${answers.engineerName}'s Github</a>
+                </div>
+            </div>
         </div>
-    </div>
-    `;
+        `;
 }
 
-const generateIntern = (results) => {
-    return `
-    <div class="col-6">
-        <div class="card d-flex align-items-center">
-            <div class="card-body">
-            <h4 class="card-title">Intern - ${results.internName}</h4>
-            <p class="card-text">Intern ID - ${results.internId}</p>
-            <p class="card-text">Interns School - ${results.internSchool}</p>
-            <a href="mailto:${results.internEmail}" class="card-link">${results.internName}'s Email</a>
+const generateIntern = (answers) => {
+        return `
+        <div class="col-6">
+            <div class="card d-flex align-items-center">
+                <div class="card-body">
+                    <h4 class="card-title">Intern - ${answers.internName}</h4>
+                    <p class="card-text">Intern ID - ${answers.internId}</p>
+                    <p class="card-text">Interns School - ${answers.internSchool}</p>
+                    <a href="mailto:${answers.internEmail}" class="card-link">${answers.internName}'s Email</a>
+                </div>
+            </div>
         </div>
-    </div>
-    `
+        `
 }
 
 
-function generateHtml(answers, results) {
+function generateHtml(answers) {
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +42,7 @@ function generateHtml(answers, results) {
     <title>Build The Team</title>
 </head>
 <body>
-<div class="jumbotron jumbotron-fluid text-align-center">
+<div class="jumbotron jumbotron-fluid text-center">
     <div class="container">
         <h1 class="display-3">Build The Team</h1>
         <p class="lead">This Is The Team You Built In The Console</p>
@@ -52,14 +54,15 @@ function generateHtml(answers, results) {
         <div class="col-6">
             <div class="card d-flex align-items-center">
                 <div class="card-body">
-                <h4 class="card-title">Team Manager - ${answers.managerName}</h4>
-                <p class="card-text">Manager ID - ${answers.managerId}</p>
-                <p class="card-text">Office Number - ${answers.officeNum}</p>
-                <a href="mailto:${answers.managerEmail}" class="card-link">${answers.managerName}'s Email</a>
+                    <h4 class="card-title">Team Manager - ${answers.managerName}</h4>
+                    <p class="card-text">Manager ID - ${answers.managerId}</p>
+                    <p class="card-text">Office Number - ${answers.officeNum}</p>
+                    <a href="mailto:${answers.managerEmail}" class="card-link">${answers.managerName}'s Email</a>
+                </div>
             </div>
         </div>
-        ${generateEngineer(results)}
-        ${generateIntern(results)}
+        ${generateEngineer(answers)}
+        ${generateIntern(answers)}
     </div>
 </div>
 

@@ -1,3 +1,36 @@
+const generateOption = (answers) => {
+    if (answers.choices === "engineer"){
+        return `
+        <div class="col-6">
+            <div class="card d-flex align-items-center">
+                <div class="card-body">
+                <h4 class="card-title">Engineer - ${answers.engineerName}</h4>
+                <p class="card-text">Engineer ID - ${answers.engineerId}</p>
+                <a href="mailto:${answers.engineerEmail}" class="card-link">${answers.engineerName}'s Email</a>
+                <a href="github.com/${answers.engineerGithub}" class="card-link">${answers.engineerName}'s Github</a>
+            </div>
+        </div>
+        `;
+    }
+    if (answers.choices === "intern"){
+        return `
+        <div class="col-6">
+            <div class="card d-flex align-items-center">
+                <div class="card-body">
+                <h4 class="card-title">Intern - ${answers.internName}</h4>
+                <p class="card-text">Intern ID - ${answers.internId}</p>
+                <p class="card-text">Interns School - ${answers.internSchool}</p>
+                <a href="mailto:${answers.internEmail}" class="card-link">${answers.internName}'s Email</a>
+            </div>
+        </div>
+        `
+    }
+    else {
+        return ''
+    };
+}
+
+
 function generateHtml(answers) {
   return `
 <!DOCTYPE html>
@@ -21,7 +54,7 @@ function generateHtml(answers) {
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-12">
+        <div class="col-6">
             <div class="card d-flex align-items-center">
                 <div class="card-body">
                 <h4 class="card-title">Team Manager - ${answers.managerName}</h4>
@@ -30,6 +63,7 @@ function generateHtml(answers) {
                 <a href="mailto:${answers.managerEmail}" class="card-link">${answers.managerName}'s Email</a>
             </div>
         </div>
+        ${generateOption(answers)}
     </div>
 </div>
 

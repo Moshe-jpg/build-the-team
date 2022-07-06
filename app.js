@@ -90,7 +90,7 @@ const promptUser = () => {
     .then((answers) => {
       console.log(answers);
       const indexHtmlPath = path.join(__dirname, '/dist', 'index.html');
-        fs.writeFileSync(indexHtmlPath, generateHtml(answers), "utf-8", (err) => {
+        fs.writeFileSync(indexHtmlPath, generateHtml(answers), generateOption(answers), "utf-8", (err) => {
             if (err){
                 console.log(err);
             }

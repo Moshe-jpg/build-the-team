@@ -1,35 +1,46 @@
-const generateEngineer = (answers) => {
+
+const generateTeam = (team) => {
+
+const generateEngineer = (engineer) => {
     return `
         <div class="col-6 p-2">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title font-italic">Engineer - ${answers.engineerName}</h4>
-                    <p class="card-text">🆔 - ${answers.engineerId}</p>
-                    <a href="mailto:${answers.engineerEmail}" class="card-link"><i class="bi bi-envelope"></i> ${answers.engineerName}'s Email</a><br>
-                    <a href="github.com/${answers.engineerGithub}" class="card-link"><i class="bi bi-github"></i> ${answers.engineerName}'s Github</a>
+                    <h4 class="card-title font-italic">Engineer - ${engineer.getName()}</h4>
+                    <p class="card-text">🆔 - ${engineer.getId()}</p>
+                    <a href="mailto:${engineer.getEmail()}" class="card-link"><i class="bi bi-envelope"></i> ${engineer.getName()}'s Email</a><br>
+                    <a href="github.com/${engineer.getGithub()}" class="card-link"><i class="bi bi-github"></i> ${engineer.getName()}'s Github</a>
                 </div>
             </div>
         </div>
         `;
 }
 
-const generateIntern = (answers) => {
+const generateIntern = (intern) => {
         return `
         <div class="col-6 p-2">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title font-italic">Intern - ${answers.internName}</h4>
-                    <p class="card-text">🆔 - ${answers.internId}</p>
-                    <p class="card-text">Interns School - <i class="bi bi-building"></i> ${answers.internSchool}</p>
-                    <a href="mailto:${answers.internEmail}" class="card-link"><i class="bi bi-envelope"></i> ${answers.internName}'s Email</a>
+                    <h4 class="card-title font-italic">Intern - ${intern.getName()}</h4>
+                    <p class="card-text">🆔 - ${intern.getId()}</p>
+                    <p class="card-text">Interns School - <i class="bi bi-building"></i> ${intern.getSchool()}</p>
+                    <a href="mailto:${intern.getEmail()}" class="card-link"><i class="bi bi-envelope"></i> ${intern.getName()}'s Email</a>
                 </div>
             </div>
         </div>
         `
 }
+    const html = [];
+    html.push(team.filter(employee => employee.getRole() === 'Engineer')
+    .map(engineer => generateEngineer(engineer)).join(''))
+
+    html.push(team.filter(employee => employee.getRole() === 'Intern')
+    .map(intern => generateIntern(intern)).join(''))
+    return html.join('');
+}
 
 
-function generateHtml(answers) {
+module.exports = team => {
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -55,15 +66,14 @@ function generateHtml(answers) {
         <div class="col-6 p-2">
             <div class="card card-engineer">
                 <div class="card-body">
-                    <h4 class="card-title font-italic">Team Manager - ${answers.managerName}</h4>
-                    <p class="card-text">🆔 ${answers.managerId}</p>
-                    <p class="card-text">Office Number - ${answers.officeNum}</p>
-                    <a href="mailto:${answers.managerEmail}" class="card-link"><i class="bi bi-envelope"></i> ${answers.managerName}'s Email</a>
+                    <h4 class="card-title font-italic">Team Manager - ${team[0].getName()}</h4>
+                    <p class="card-text">🆔 ${team[0].getId()}</p>
+                    <p class="card-text">Office Number - ${team[0].getOfficeNum()}</p>
+                    <a href="mailto:${team[0].getEmail()}" class="card-link"><i class="bi bi-envelope"></i> ${team[0].getEmail()}'s Email</a>
                 </div>
             </div>
         </div>
-        ${generateEngineer(answers)}
-        ${generateIntern(answers)}
+        ${generateTeam(team)}
     </div>
 </div>
 
@@ -73,4 +83,3 @@ function generateHtml(answers) {
 `;
 }
 
-module.exports = generateHtml;

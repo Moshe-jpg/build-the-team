@@ -3,6 +3,10 @@ const path = require("path");
 const fs = require("fs");
 const inquirer = require("inquirer");
 const generateHtml = require("./generateHtml.js");
+const Engineer = require('./lib/Engineer.js');
+const Intern = require('./lib/Intern.js');
+const Manager = require('./lib/Manager.js');
+const teamMembers = [];
 
 // This function will prompt the user for the Managers information and will either run another function based on the answers, or it'll send the answers to be generated into an html page
 const promptUser = () => {
@@ -59,10 +63,21 @@ const promptUser = () => {
             return false;
           }
         },
-      },
+      }
+    ])
+    .then((answers) => {
+    const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.officeNum)
+    teamMembers.push(manager);
+    addTeamMembers();
+    })
+};
+
+const addTeamMembers = () => {
+  inquirer.prompt (
+    [
       {
         type: "list",
-        name: "nextOptions",
+        name: "nextTeamMember",
         message: "Would you like to add an engineer or intern?",
         choices: ["engineer", "intern", "none"],
         validate: (nextOptionsList) => {
@@ -74,32 +89,20 @@ const promptUser = () => {
           }
         },
       },
-    ])
-    .then((answers) => {
-      nextOptions(answers);
-      return answers;
-    })
-    .then((answers) => {
-      console.log(answers);
-      const indexHtmlPath = path.join(__dirname, "index.html");
-      fs.writeFileSync(indexHtmlPath, generateHtml(answers),  "utf-8", (err) => {
-          if (err) {
-            console.log(err);
-          }
-        }
-      );
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
+    ]
+  )
+  .then((answers) => {
+    nextOptions(answers);
+  })
+}
 
 
 // This function will either add an engineer or intern, or neither into the generated html
 const nextOptions = (answers) => {
-  if (answers.choices === "engineer"){
+  console.log(answers)
+  if (answers.nextTeamMember === "engineer"){
     return inquirer
-    .prompt([// name id email gthub
+    .prompt([
       {
         type: "input",
         name: 'engineerName',
@@ -153,9 +156,15 @@ const nextOptions = (answers) => {
         },
       }
     ])
+    .then((answers) => {
+      console.log(answers)
+      const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub)
+      teamMembers.push(engineer);
+      addTeamMembers();
+    })
   };
 
-  if (answers.choices === "intern"){
+  if (answers.nextTeamMember === "intern"){
     return inquirer
     .prompt([
       {
@@ -211,13 +220,27 @@ const nextOptions = (answers) => {
         },
       }
     ])
+    .then((answers) => {
+      const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool)
+      teamMembers.push(intern);
+      addTeamMembers();
+    })
   }
   else {
-    
+    buildTeam();
   }
 }
 
+const buildTeam = () => {
+  const indexHtmlPath = path.resolve(__dirname, "index.html");
+  const distPath = path.join(indexHtmlPath, "index.html");
+  fs.writeFileSync(distPath, generateHtml(teamMembers),  "utf-8", (err) => {
+      if (err) {
+        console.log(err);
+      }
+    }
+  );
+}
 
 
-promptUser()
-.then()
+promptUser();

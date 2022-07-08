@@ -1,8 +1,9 @@
 
 const generateTeam = (team) => {
 
-const generateEngineer = (engineer) => {
-    return `
+    // Generate the engineer
+    const generateEngineer = (engineer) => {
+        return `
         <div class="col-6 p-2">
             <div class="card">
                 <div class="card-body">
@@ -14,9 +15,10 @@ const generateEngineer = (engineer) => {
             </div>
         </div>
         `;
-}
+    }
 
-const generateIntern = (intern) => {
+    // Generate the intern
+    const generateIntern = (intern) => {
         return `
         <div class="col-6 p-2">
             <div class="card">
@@ -29,7 +31,7 @@ const generateIntern = (intern) => {
             </div>
         </div>
         `
-}
+    }
     const html = [];
     html.push(team.filter(employee => employee.getRole() === 'Engineer')
     .map(engineer => generateEngineer(engineer)).join(''))
@@ -39,7 +41,7 @@ const generateIntern = (intern) => {
     return html.join('');
 }
 
-
+// generate the entire webpage
 module.exports = team => {
   return `
 <!DOCTYPE html>
@@ -69,7 +71,7 @@ module.exports = team => {
                     <h4 class="card-title font-italic">Team Manager - ${team[0].getName()}</h4>
                     <p class="card-text">🆔 ${team[0].getId()}</p>
                     <p class="card-text">Office Number - ${team[0].getOfficeNum()}</p>
-                    <a href="mailto:${team[0].getEmail()}" class="card-link"><i class="bi bi-envelope"></i> ${team[0].getEmail()}'s Email</a>
+                    <a href="mailto:${team[0].getEmail()}" class="card-link"><i class="bi bi-envelope"></i> ${team[0].getName()}'s Email</a>
                 </div>
             </div>
         </div>

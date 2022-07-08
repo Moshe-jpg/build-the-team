@@ -72,6 +72,7 @@ const promptUser = () => {
     })
 };
 
+// After adding the engineer it will prompt you to add more team members with this function
 const addTeamMembers = () => {
   inquirer.prompt (
     [
@@ -99,7 +100,6 @@ const addTeamMembers = () => {
 
 // This function will either add an engineer or intern, or neither into the generated html
 const nextOptions = (answers) => {
-  console.log(answers)
   if (answers.nextTeamMember === "engineer"){
     return inquirer
     .prompt([
@@ -157,7 +157,7 @@ const nextOptions = (answers) => {
       }
     ])
     .then((answers) => {
-      console.log(answers)
+      // This will push the answrs into the team members array
       const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub)
       teamMembers.push(engineer);
       addTeamMembers();
@@ -221,6 +221,7 @@ const nextOptions = (answers) => {
       }
     ])
     .then((answers) => {
+            // This will push the answrs into the team members array
       const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool)
       teamMembers.push(intern);
       addTeamMembers();
@@ -231,8 +232,9 @@ const nextOptions = (answers) => {
   }
 }
 
+// After you;re done building the team, it'll send your info to generateHtml() and create the page
 const buildTeam = () => {
-  const indexHtmlPath = path.resolve(__dirname, "index.html");
+  const indexHtmlPath = path.resolve(__dirname, "dist");
   const distPath = path.join(indexHtmlPath, "index.html");
   fs.writeFileSync(distPath, generateHtml(teamMembers),  "utf-8", (err) => {
       if (err) {

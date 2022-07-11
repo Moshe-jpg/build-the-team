@@ -10,7 +10,7 @@ const generateTeam = (team) => {
                     <h4 class="card-title font-italic">Engineer - ${engineer.getName()}</h4>
                     <p class="card-text">🆔 - ${engineer.getId()}</p>
                     <a href="mailto:${engineer.getEmail()}" class="card-link"><i class="bi bi-envelope"></i> ${engineer.getName()}'s Email</a><br>
-                    <a href="github.com/${engineer.getGithub()}" class="card-link"><i class="bi bi-github"></i> ${engineer.getName()}'s Github</a>
+                    <a href="https://www.github.com/${engineer.getGithub()}"  class="card-link"><i class="bi bi-github"></i> ${engineer.getName()}'s Github</a>
                 </div>
             </div>
         </div>

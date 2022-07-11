@@ -1,0 +1,23 @@
+{
+  "name": "build-the-team---module-10",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moshe-jpg/build-the-team.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Moshe-jpg/build-the-team/issues"
+  },
+  "homepage": "https://github.com/Moshe-jpg/build-the-team#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4",
+    "jest": "^28.1.2"
+  }
+}
